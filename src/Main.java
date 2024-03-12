@@ -49,6 +49,7 @@ public class Main {
 
         System.out.printf("A idade média de %s e %s é de %.1f anos%n", nomeA, nomeB, mediaIdade);*/
 
+        /*
         // troco
         double preco, dinheiro, troco;
         int quantidade;
@@ -62,8 +63,19 @@ public class Main {
 
         troco = dinheiro - (preco * quantidade);
 
-        System.out.printf("TROCO = %.2f%n", troco);
+        System.out.printf("TROCO = %.2f%n", troco);*/
 
+        // duracao
+        int duracao, horas, minutos, segundos;
+
+        System.out.println("Digite a duração em segundos: ");
+        duracao = scanner.nextInt();
+
+        horas = duracao / 3600;
+        minutos = (duracao % 3600) / 60;
+        segundos = (duracao % 3600) % 60;
+
+        System.out.printf("%d:%d:%d%n", horas, minutos, segundos);
 
     }
 }
