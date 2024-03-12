@@ -7,22 +7,24 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);
 
-        double nota1, nota2, media;
+        double coeficienteA, coeficienteB, coeficienteC, x1, x2, delta;
 
-        System.out.println("Digite a primeira nota: ");
-        nota1 = scanner.nextDouble();
+        System.out.println("Coeficiente a:");
+        coeficienteA = scanner.nextDouble();
+        System.out.println("Coeficiente b:");
+        coeficienteB = scanner.nextDouble();
+        System.out.println("Coeficiente c:");
+        coeficienteC = scanner.nextDouble();
 
-        System.out.println("Digite a segunda nota: ");
-        nota2 = scanner.nextDouble();
+        delta = Math.pow(coeficienteB, 2) - 4 * coeficienteA * coeficienteC;
 
-        media = nota1 + nota2;
-
-        if (media >= 60.00) {
-            System.out.printf("NOTA FINAL: %.2f\n", media);
-            System.out.println("Aprovado");
+        if (coeficienteA == 0 || delta < 0) {
+            System.out.println("Esta equação não possui raízes reais");
         } else {
-            System.out.printf("NOTA FINAL: %.2f\n", media);
-            System.out.println("Reprovado");
+            x1 = (-coeficienteB + Math.sqrt(delta)) / (2 * coeficienteA);
+            x2 = (-coeficienteB - Math.sqrt(delta)) / (2 * coeficienteA);
+            System.out.printf("R1 = %.4f\n", x1);
+            System.out.printf("R2 = %.4f\n", x2);
         }
     }
 }
