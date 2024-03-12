@@ -25,7 +25,7 @@ public class Main {
         System.out.printf("Área do terreno: %.2f%n", area);
         System.out.printf("Preço do terreno: %.2f%n", preco);*/
 
-
+/*
         // Idades
         String nomeA, nomeB;
         int idadeA, idadeB;
@@ -47,7 +47,22 @@ public class Main {
 
         mediaIdade = (double) (idadeA + idadeB) / 2;
 
-        System.out.printf("A idade média de %s e %s é de %.1f anos%n", nomeA, nomeB, mediaIdade);
+        System.out.printf("A idade média de %s e %s é de %.1f anos%n", nomeA, nomeB, mediaIdade);*/
+
+        // troco
+        double preco, dinheiro, troco;
+        int quantidade;
+
+        System.out.println("Preço unitário do produto: ");
+        preco = scanner.nextDouble();
+        System.out.println("Quantidade comprada: ");
+        quantidade = scanner.nextInt();
+        System.out.println("Dinheiro recebido: ");
+        dinheiro = scanner.nextDouble();
+
+        troco = dinheiro - (preco * quantidade);
+
+        System.out.printf("TROCO = %.2f%n", troco);
 
 
     }
