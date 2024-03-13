@@ -7,24 +7,54 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         scanner.useLocale(Locale.US);
 
-        double coeficienteA, coeficienteB, coeficienteC, x1, x2, delta;
+        double rendaAnualSalario, rendaAnualServicos,
+                rendaAnualCapital, gastosMedicos, gastosEducacionais,
+                impostoSalario, impostoServicos, impostoCapital,
+                impostoBruto, abatimento, impostoLiquido;
 
-        System.out.println("Coeficiente a:");
-        coeficienteA = scanner.nextDouble();
-        System.out.println("Coeficiente b:");
-        coeficienteB = scanner.nextDouble();
-        System.out.println("Coeficiente c:");
-        coeficienteC = scanner.nextDouble();
 
-        delta = Math.pow(coeficienteB, 2) - 4 * coeficienteA * coeficienteC;
+        System.out.println("Renda anual com salário:");
+        rendaAnualSalario = scanner.nextDouble();
+        System.out.println("Renda anual com prestação de serviço:");
+        rendaAnualServicos = scanner.nextDouble();
+        System.out.println("Renda anual com ganho de capital:");
+        rendaAnualCapital = scanner.nextDouble();
+        System.out.println("Gastos médicos:");
+        gastosMedicos = scanner.nextDouble();
+        System.out.println("Gastos educacionais:");
+        gastosEducacionais = scanner.nextDouble();
 
-        if (coeficienteA == 0 || delta < 0) {
-            System.out.println("Esta equação não possui raízes reais");
-        } else {
-            x1 = (-coeficienteB + Math.sqrt(delta)) / (2 * coeficienteA);
-            x2 = (-coeficienteB - Math.sqrt(delta)) / (2 * coeficienteA);
-            System.out.printf("R1 = %.4f\n", x1);
-            System.out.printf("R2 = %.4f\n", x2);
-        }
+
+        impostoSalario = CalcularImpostos.calcularImpostoSalario(rendaAnualSalario);
+        impostoServicos = CalcularImpostos.calcularImpostoServicos(rendaAnualServicos);
+        impostoCapital = CalcularImpostos.calcularImpostoCapital(rendaAnualCapital);
+
+        impostoBruto = impostoSalario + impostoServicos + impostoCapital;
+        abatimento = CalcularImpostos.calcularAbatimento(impostoBruto, gastosMedicos, gastosEducacionais);
+        impostoLiquido = impostoBruto - abatimento;
+
+
+        System.out.println("RELATÓRIO DE IMPOSTO DE RENDA");
+        System.out.println();
+        System.out.println("CONSOLIDADO DE RENDA:");
+        System.out.println("Imposto sobre salário: " + impostoSalario);
+        System.out.println("Imposto sobre serviços: " + impostoServicos);
+        System.out.println("Imposto sobre ganho de capital: " + impostoCapital);
+        System.out.println();
+        System.out.println("DEDUÇÕES:");
+        System.out.println("Máximo dedutível: " + abatimento);
+        System.out.println("Gastos dedutíveis: " + (gastosMedicos + gastosEducacionais));
+        System.out.println();
+        System.out.println("RESUMO:");
+        System.out.println("Imposto bruto total: " + impostoBruto);
+        System.out.println("Abatimento: " + abatimento);
+        System.out.println("Imposto devido: " + impostoLiquido);
+
+        scanner.close();
     }
 }
+
+
+
+
+
