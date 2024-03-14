@@ -3,58 +3,73 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
-        scanner.useLocale(Locale.US);
+        Locale.setDefault(Locale.US);
+        System.out.print("Qual a quantidade de atletas? ");
+        int N = scanner.nextInt();
+        scanner.nextLine();
+        double somaPeso = 0, somaAlturaMulheres = 0, maiorAltura = 0;
+        String nomeMaisAlto = "";
+        int qtdHomens = 0, qtdMulheres = 0;
 
-        double rendaAnualSalario, rendaAnualServicos,
-                rendaAnualCapital, gastosMedicos, gastosEducacionais,
-                impostoSalario, impostoServicos, impostoCapital,
-                impostoBruto, abatimento, impostoLiquido;
+        for (int i = 0; i < N; i++) {
+            System.out.println("Digite os dados do atleta numero " + (i + 1) + ": ");
 
+            System.out.print("Nome: ");
+            String nome = scanner.nextLine();
 
-        System.out.println("Renda anual com salário:");
-        rendaAnualSalario = scanner.nextDouble();
-        System.out.println("Renda anual com prestação de serviço:");
-        rendaAnualServicos = scanner.nextDouble();
-        System.out.println("Renda anual com ganho de capital:");
-        rendaAnualCapital = scanner.nextDouble();
-        System.out.println("Gastos médicos:");
-        gastosMedicos = scanner.nextDouble();
-        System.out.println("Gastos educacionais:");
-        gastosEducacionais = scanner.nextDouble();
+            char sexo;
+            do {
+                System.out.print("Sexo (F/M): ");
+                sexo = scanner.next().charAt(0);
+                scanner.nextLine();
+                if (sexo != 'F' && sexo != 'M') System.out.println("Valor invalido! Favor digitar F ou M.");
+            } while (sexo != 'F' && sexo != 'M');
 
+            double altura;
+            do {
+                System.out.print("Altura: ");
+                altura = scanner.nextDouble();
+                if (altura <= 0) System.out.println("Valor invalido! Favor digitar um valor positivo.");
+            } while (altura <= 0);
 
-        impostoSalario = CalcularImpostos.calcularImpostoSalario(rendaAnualSalario);
-        impostoServicos = CalcularImpostos.calcularImpostoServicos(rendaAnualServicos);
-        impostoCapital = CalcularImpostos.calcularImpostoCapital(rendaAnualCapital);
+            double peso;
+            do {
+                System.out.print("Peso: ");
+                peso = scanner.nextDouble();
+                scanner.nextLine();
+                if (peso <= 0) System.out.println("Valor invalido! Favor digitar um valor positivo.");
+            } while (peso <= 0);
 
-        impostoBruto = impostoSalario + impostoServicos + impostoCapital;
-        abatimento = CalcularImpostos.calcularAbatimento(impostoBruto, gastosMedicos, gastosEducacionais);
-        impostoLiquido = impostoBruto - abatimento;
+            somaPeso += peso;
 
+            if (altura > maiorAltura) {
+                maiorAltura = altura;
+                nomeMaisAlto = nome;
+            }
 
-        System.out.println("RELATÓRIO DE IMPOSTO DE RENDA");
-        System.out.println();
-        System.out.println("CONSOLIDADO DE RENDA:");
-        System.out.println("Imposto sobre salário: " + impostoSalario);
-        System.out.println("Imposto sobre serviços: " + impostoServicos);
-        System.out.println("Imposto sobre ganho de capital: " + impostoCapital);
-        System.out.println();
-        System.out.println("DEDUÇÕES:");
-        System.out.println("Máximo dedutível: " + abatimento);
-        System.out.println("Gastos dedutíveis: " + (gastosMedicos + gastosEducacionais));
-        System.out.println();
-        System.out.println("RESUMO:");
-        System.out.println("Imposto bruto total: " + impostoBruto);
-        System.out.println("Abatimento: " + abatimento);
-        System.out.println("Imposto devido: " + impostoLiquido);
+            if (sexo == 'M') {
+                qtdHomens++;
+            } else {
+                qtdMulheres++;
+                somaAlturaMulheres += altura;
+            }
+        }
+
+        double pesoMedio = somaPeso / N;
+        double alturaMediaMulheres = (qtdMulheres > 0) ? somaAlturaMulheres / qtdMulheres : 0;
+        double porcentagemHomens = ((double) qtdHomens / N) * 100;
+
+        System.out.println("RELATÓRIO:");
+        System.out.printf("Peso médio dos atletas: %.2f\n", pesoMedio);
+        System.out.println("Atleta mais alto: " + nomeMaisAlto);
+        System.out.printf("Porcentagem de homens: %.1f %%\n", porcentagemHomens);
+        if (qtdMulheres > 0) {
+            System.out.printf("Altura média das mulheres: %.2f\n", alturaMediaMulheres);
+        } else {
+            System.out.println("Não há mulheres cadastradas.");
+        }
 
         scanner.close();
     }
 }
-
-
-
-
-
