@@ -13,16 +13,19 @@ public class Main {
         System.out.println("Enter product data:");
         System.out.print("Name: ");
         product.Name = scanner.nextLine();
-        product.Name = scanner.nextLine();
         System.out.print("Price: ");
         product.Price = scanner.nextDouble();
-        System.out.print("Quantity in stock: ");
-        product.Quantity = scanner.nextInt();
+        System.out.print("Quantity in stock add: ");
+        product.AddProducts(scanner.nextInt());
 
         System.out.println();
         System.out.println("Product data: " + product.Name + ", $"
                 + product.Price + ", " + product.Quantity
                 + " units, Total: $" + product.TotalValueInStock());
+
+        System.out.print("Quantity in stock remove: ");
+        product.RemoveProducts(scanner.nextInt());
+        System.out.println("Product data total in Stock: " + product.Quantity + " units, Total: $" + product.TotalValueInStock());
 
         scanner.close();
     }
