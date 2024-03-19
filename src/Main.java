@@ -13,6 +13,7 @@ public class Main {
         System.out.println("Enter product data:");
         System.out.print("Name: ");
         product.Name = scanner.nextLine();
+        product.Name = scanner.nextLine();
         System.out.print("Price: ");
         product.Price = scanner.nextDouble();
         System.out.print("Quantity in stock: ");
@@ -21,7 +22,7 @@ public class Main {
         System.out.println();
         System.out.println("Product data: " + product.Name + ", $"
                 + product.Price + ", " + product.Quantity
-                + " units, Total: $" + product.TotalValeuInStock());
+                + " units, Total: $" + product.TotalValueInStock());
 
         scanner.close();
     }

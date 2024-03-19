@@ -5,7 +5,7 @@ public class Product {
     public double Price;
     public int Quantity;
 
-    public double TotalValeuInStock() {
+    public double TotalValueInStock() {
         return Price * Quantity;
     }
 
