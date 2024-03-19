@@ -5,8 +5,8 @@ public class Product {
     public double Price;
     public int Quantity;
 
-    public void TotalValeuInStock() {
-        System.out.println("Total: " + (Price * Quantity));
+    public double TotalValeuInStock() {
+        return Price * Quantity;
     }
 
     public void AddProducts(int quantity) {

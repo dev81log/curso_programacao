@@ -21,7 +21,7 @@ public class Main {
         System.out.println();
         System.out.println("Product data: " + product.Name + ", $"
                 + product.Price + ", " + product.Quantity
-                + " units, Total: $" + (product.Price * product.Quantity));
+                + " units, Total: $" + product.TotalValeuInStock());
 
         scanner.close();
     }
