@@ -1,34 +1,32 @@
-import entities.Product;
-import java.util.Locale;
+import entities.Bill;
 import java.util.Scanner;
-
-import static java.util.Locale.*;
 
 
 public class Main {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        setDefault(US);
 
-        Product product = new Product();
+        System.out.println("Digite o sexo (F ou M): ");
+        char gender = scanner.nextLine().charAt(0);
 
-        System.out.println("Enter product data:");
-        System.out.print("Name: ");
-        product.Name = scanner.nextLine();
-        System.out.print("Price: ");
-        product.Price = scanner.nextDouble();
-        System.out.print("Quantity in stock add: ");
-        product.AddProducts(scanner.nextInt());
+        System.out.println("Digite a quantidade de cervejas: ");
+        int beers = scanner.nextInt();
 
-        System.out.println();
-        System.out.println("Product data: " + product.Name + ", $"
-                + product.Price + ", " + product.Quantity
-                + " units, Total: $" + product.TotalValueInStock());
+        System.out.println("Digite a quantidade de refrigerantes: ");
+        int softDrinks = scanner.nextInt();
 
-        System.out.print("Quantity in stock remove: ");
-        product.RemoveProducts(scanner.nextInt());
-        System.out.println("Product data total in Stock: " + product.Quantity + " units, Total: $" + product.TotalValueInStock());
+        System.out.println("Digite a quantidade de espetinhos: ");
+        int barbecues = scanner.nextInt();
 
         scanner.close();
+
+        Bill bill = new Bill(gender, beers, barbecues, softDrinks);
+
+        System.out.println("RELATÓRIO:");
+        System.out.printf("Consumo = R$ %.2f%n", bill.feeding());
+        System.out.println("Couvert = " + bill.cover());
+        System.out.printf("Ingresso = R$ %.2f%n", bill.ticket());
+        System.out.printf("Valor a pagar = R$ %.2f%n", bill.total());
     }
 }
